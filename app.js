@@ -1,23 +1,30 @@
-const pic = document.getElementById("image");
-const apiKey = "a1fcc3ed750d43c5bfa193323252212";
-const city = "Sindh, Pakistan";
+// const pic = document.getElementById("image");
+// // const apiKey = "a1fcc3ed750d43c5bfa193323252212";
+// const city = "Sindh, Pakistan";
 
-const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+// const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
 
-async function weatherApp(url, city) {
+// async function weatherApp(url, city) {
     // let response = await fetch(url)
     // let data = await response.json();
     // console.log(data);
     // pic.src = data.current.condition.icon
-    let response = await fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-        console.log(data);
-        pic.src = data.current.condition.icon;
-        console.log(`Condition: ${data.current.condition.text}`);
-    })
-    .catch((error) => console.log(error));
-}
+//     let response = await fetch(url)
+//     .then((response) => response.json())
+//     .then((data) => {
+//         console.log(data);
+//         pic.src = data.current.condition.icon;
+//         console.log(`Condition: ${data.current.condition.text}`);
+//     })
+//     .catch((error) => console.log(error));
+// }
 
-weatherApp(url, city);
+// weatherApp(url, city);
     // console.log(`Condition: ${data.current.condition.text}`);;
+
+const autoSwipe = document.querySelector(".first-loader");
+
+setTimeout(() => {
+    autoSwipe.style.animation= "2s loader linear forwards";
+}, 4000);
+    
