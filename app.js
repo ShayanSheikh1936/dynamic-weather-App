@@ -1,54 +1,91 @@
-// const pic = document.getElementById("image");
-// // const apiKey = "a1fcc3ed750d43c5bfa193323252212";
-// const city = "Sindh, Pakistan";
+const errorName = document.querySelector(".error_name")
+const pop_show = document.querySelector(".popup_show")
+const autoSwipe = document.querySelector(".first-loader");
+const errorPanel = document.querySelector(".popup_error_panel")
+
+const apiKey = "a1fcc3ed750d43c5bfa193323252212";
+const city = "Russia";
 
 // const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
 
 // async function weatherApp(url, city) {
-    // let response = await fetch(url)
-    // let data = await response.json();
-    // console.log(data);
-    // pic.src = data.current.condition.icon
 //     let response = await fetch(url)
-//     .then((response) => response.json())
-//     .then((data) => {
-//         console.log(data);
-//         pic.src = data.current.condition.icon;
-//         console.log(`Condition: ${data.current.condition.text}`);
-//     })
-//     .catch((error) => console.log(error));
+//     let data = await response.json();
+//     console.log(data);
+//     // pic.src = data.current.condition.icon;
 // }
+isTrue = false
+function getWeather(lat, lon) {
+  fetch(isTrue?`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`:`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`)
+   .then(response => response.json())
+   .then(data => {
+       setTimeout(() => {
+           autoSwipe.style.animation= "1s loader linear forwards "  
+       }, 5000)
+     console.log(data)
+   })
+   .catch(error =>{
+    console.log("failed to fetch")
+    errorhandling("Check your internet connection")
+   });
+}
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        console.log(lat, lon);
+        isTrue = true
+        getWeather(lat, lon);
+      },
+      (error) => {
+        console.error(`location access denied ${error}`);
+        errorhandling(`location access denied`)
+        getWeather();
+      }
+    );
+  } else {
+    confirm("Auto geolocation not supported");
+    errorhandling(`Auto geolocation not supported`)
+    getWeather();
+  }
 
-// weatherApp(url, city);
-    // console.log(`Condition: ${data.current.condition.text}`);;
+function errorhandling(error)
+{
+  errorName.textContent= error
+  errorPanel.classList.add("popup_show")
+}
 
-const autoSwipe = document.querySelector(".first-loader");
+// Auto location Check and get info    
+// const popMessage = document.querySelector(".popup_error")
 
-setTimeout(() => {
-    autoSwipe.style.animation= "1.5s loader linear forwards";
-}, 8000);
-
-ScrollReveal({
- 
-    distance : '10px',
-    duration : 1500,
-    delay : 300,
-  });
-  ScrollReveal().reveal('.animate-right', {delay : 250, origin: 'right', distance: '20px', reset: true, mobile: false, easing: 'ease'});
-  ScrollReveal().reveal('.animate-left', { delay: 250 , origin: 'left', distance: '20px', reset: true, mobile: false});
-  ScrollReveal().reveal('.animate-bottom',{ delay: 200 , origin: 'bottom' , reset: true, distance: '30px'});
-  ScrollReveal().reveal('.animate-top',{ delay: 300 , origin: 'top', distance: '30px', reset: true});
-//   ScrollReveal().reveal('.animate-top-1',{ delay: 200 , origin: 'bottom'});
-//   ScrollReveal().reveal('.animate-top-2',{ delay: 300 , origin: 'bottom'});
-//   ScrollReveal().reveal('.animate-top-3',{ delay: 400 , origin: 'bottom'});
-//   ScrollReveal().reveal('.animate-top-4',{ delay: 500 , origin: 'bottom'});
-  ScrollReveal().reveal('.reveal1',{ delay: 300 , reset:true,});
-  ScrollReveal().reveal('.reveal2',{ delay: 500 , reset:true, });
-  ScrollReveal().reveal('.reveal3',{ delay: 700 , reset:true,});
-  ScrollReveal().reveal('.reveal4',{ delay: 900 , reset:true,});
-  ScrollReveal().reveal('.clickmore',{ delay: 700 , reset:true, origin: 'bottom' });
-  ScrollReveal().reveal('.rotate',{ rotate:{ x: 0, y: 0, z: 100 }, reset: true } );
-  ScrollReveal().reveal('.footerSection',{ delay: 200 , origin: 'bottom' , reset: true, distance: '30px', desktop: false });
-  ScrollReveal().reveal('.contactSection',{ delay: 200 , origin: 'top' , reset: true, distance: '30px', desktop: false } );
-
-    
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(
+//       (position) => {
+//         const lat = position.coords.latitude;
+//         const lon = position.coords.longitude;
+//         console.log(lat, lon);
+//         getWeather(lat, lon);
+//       },
+//       (error) => {
+//         console.error(`location access denied ${error}`);
+//         errorhandling(`location access denied`)
+//       }
+//     );
+//   } else {
+//     confirm("Auto geolocation not supported");
+//     errorhandling(`Auto geolocation not supported`)
+//   }
+// function getWeather(lat, lon) {
+//    fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`)
+//     .then(response => response.json())
+//     .then(data => {
+//         setTimeout(() => {
+//             autoSwipe.style.animation= "1s loader linear forwards ";
+//         }, 10000);
+//       console.log(data);
+//     //   showWeather(data);
+//     })
+//     .catch(error => console.log("jsdg",error));
+// }
+// // console.log("shaya");
