@@ -108,6 +108,8 @@ body{
 }
 .popup_error .popup_error_panel p{
     text-transform: capitalize;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 @keyframes slide {

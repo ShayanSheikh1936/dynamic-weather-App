@@ -23,10 +23,14 @@ function getWeather(lat, lon) {
            autoSwipe.style.animation= "1s loader linear forwards "  
        }, 5000)
      console.log(data)
+     let info={
+      "country_name":data,
+
+     }
    })
    .catch(error =>{
     console.log("failed to fetch")
-    errorhandling("Check your internet connection")
+    errorhandling("failed to fetch")
    });
 }
 if (navigator.geolocation) {
@@ -53,7 +57,7 @@ if (navigator.geolocation) {
 function errorhandling(error)
 {
   errorName.textContent= error
-  errorPanel.classList.add("popup_show")
+  errorPanel.classList.add("popup_show")  
 }
 
 // Auto location Check and get info    
