@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./Styles/style.css">
     <link rel="stylesheet" href="./Styles/animation.css">
     <link rel="stylesheet" href="./Styles/responsive.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" integrity="sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
     <!-- popup error display -->
@@ -21,23 +22,23 @@
         </div>
     </div>
 </div>
-    <!-- <div class="first-loader">
-        <video autoplay muted loop preload="none">
-            <source src="../videos/856885-hd_1920_1080_30fps.mp4" type="video/mp4">
+    <div class="first-loader">
+        <video autoplay muted loop playsinline class="lazyload">
+            <source data-src="../videos/856885-hd_1920_1080_30fps.mp4" type="video/mp4">
           </video>
-        <div class="loader .animate-right">
-            <div class="sun">
-                <img src="./Images/ChatGPT Image Dec 24, 2025, 01_19_55 AM.png" loading="eager" width="100px" alt="" class="single-cloud">
+            <div class="loader animate-right">
+                <div class="sun">
+                    <img data-src="./Images/ChatGPT Image Dec 24, 2025, 01_19_55 AM.png" alt="" class="single-cloud lazyload">
+                </div>
             </div>
-        </div>
-        <div>
-            <p class="loader-text animate-right">TodayWeather.com</p>
-        </div>
-    </div> -->
+            <div>
+                <p class="loader-text animate-right lazyload">TodayWeather.com</p>
+            </div>
+    </div>
 <!-- ----------------------------------------------------------------------------------------------------------------------- -->
 <header style="display: flex; align-items: center;" >
     <div>Shayan</div>
-    <img src="./images/image4.svg" width="30px" height="30px" alt="">
+    <img data-src="./images/image4.svg" width="30px" height="30px" alt="" class="lazyload">
 </header>
 
 <!-- <script src="color.js"></script> -->

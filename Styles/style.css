@@ -45,6 +45,7 @@ body{
 } 
 .single-cloud
 {
+    width: 100px;
     top: 40px;
     /* left: 90px; */
     transform: translate(-50%, -90%);
@@ -64,14 +65,6 @@ body{
     -webkit-background-clip:text;
     background-position: center;
     animation: 2.3s loader-text linear;
-}
-@keyframes loader {
-    from{
-        transform: translateY(0px);
-    }
-    to{
-        transform: translateY(-100%);
-    }
 }
 .popup_error
 {
@@ -95,7 +88,7 @@ body{
 }
 .popup_error .popup_error_panel div{
     border: 3px solid red; 
-    padding: 5px 60px;
+    padding: 5px 40px;
     display: flex;
     justify-content: center;
     align-items: center;

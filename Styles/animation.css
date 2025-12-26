@@ -17,3 +17,11 @@
         /* display: inline; */
     }
 }
+@keyframes loader {
+    from{
+        transform: translateY(0px);
+    }
+    to{
+        transform: translateY(-100%);
+    }
+}
