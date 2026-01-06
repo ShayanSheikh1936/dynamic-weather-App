@@ -25,3 +25,11 @@
         transform: translateY(-100%);
     }
 }
+@keyframes slide {
+    from{
+        transform: translateY(-100%);
+    }
+    to{
+        transform: translateY(100px);
+    }
+}
