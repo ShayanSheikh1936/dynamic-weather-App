@@ -1,3 +1,9 @@
+@media screen and (max-width: 768px) {
+    .favorite-container::scroll-button(right),
+    .favorite-container::scroll-button(left){
+        display: none;
+    }
+}
 @media screen and (max-width: 425px) {
     .loader-text{
         font-size: 30px;
@@ -18,6 +24,16 @@
             /* display: inline; */
         }
     }
+    .add-ads{
+        display: none;
+    }
+    .weather-update{
+        max-width: 300px;
+    }
+    .favorite-container::scroll-button(right),
+    .favorite-container::scroll-button(left){
+        display: none;
+    }
 }
 @media screen and (max-width: 375px) {
     .loader-text{
@@ -31,6 +47,10 @@
             font-size: 25px;
             /* display: inline; */
         }
+    }
+    .favorite-container::scroll-button(right),
+    .favorite-container::scroll-button(left){
+        display: none;
     }
 }
 @media screen and (max-width: 320px) {
@@ -52,5 +72,20 @@
             font-size: 22px;
             /* display: inline; */
         }
+    }
+    .weather-update{
+        max-width: 235px;
+        padding: 10px 0 10px 5px;
+        gap: 25px;
+    }
+    .between-heading{
+        font-size: 30px;
+    }
+    .between-text{
+        font-size: 30px;
+    }
+    .favorite-container::scroll-button(right),
+    .favorite-container::scroll-button(left){
+        display: none;
     }
 }

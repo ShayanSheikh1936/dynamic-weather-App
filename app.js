@@ -5,22 +5,29 @@ const autoSwipe = document.querySelector(".first-loader");
 const errorPanel = document.querySelector(".popup_error_panel")
 const inpSearchPlaceholder = document.querySelector(".search")
 
-const apiKey = "a1fcc3ed750d43c5bfa193323252212";
-// const city = "";
 
+const apiKey = "a1fcc3ed750d43c5bfa193323252212";
+// const cityL =localStorage.getItem("city")
+// localStorage.setItem("city",city)
 // const url = ;
 
 async function weatherApp(city) {
-    let response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`)
+    let response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`);
     let data = await response.json();
     console.log(data);
+      let info={
+        "country_name":data.location.name,
+        "region":data.location.region
+      }
+    inpSearchPlaceholder.placeholder=`${info.country_name}, ${info.region}`;
+    document.querySelector(".location").textContent=`${info.country_name}, ${info.region}`;
 }
 // weatherApp("london");
-
-isTrue = false
-
+isNull=false
+isTrue =false
+// isUserInp =false
 function getWeather(lat, lon) {
-  fetch(isTrue?`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`:`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${cityName}`)
+   fetch(isTrue?`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`:`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${localStorage.getItem("city")}`)
    .then(response => response.json())
    .then(data => {
        setTimeout(() => {
@@ -29,23 +36,11 @@ function getWeather(lat, lon) {
      console.log(data)
      inpSearchPlaceholder.placeholder=`${data.location.name}, ${data.location.region}`;
      document.querySelector(".location").textContent=`${data.location.name}, ${data.location.region}`;
-    //  let info={
-    //   "country_name":data,
-
-    //  }
    })
    .catch(error =>{
     console.log("failed to fetch")
     errorhandling("failed to fetch")
    });
-}
-if(String(isTrue)=="false")
-{
-  Swal.fire({
-    title: 'Success!',
-    text: 'Weather data loaded successfully',
-    icon: 'success'
-  });
 }
 function locationCheck()
 {if (navigator.geolocation) {
@@ -61,6 +56,42 @@ function locationCheck()
         console.error(`location access denied ${error}`);
         errorhandling(`location access denied`)
         getWeather();
+        isTrue = false
+        if (localStorage.getItem("city") == null) {
+          console.log("lassan");
+          if(String(isTrue)==="false")
+            {
+              Swal.fire({
+                title: 'Enter City Name',
+                input: 'text',
+                inputPlaceholder: 'e.g. Karachi',
+                showCancelButton: true,
+                confirmButtonText: 'Search',
+                icon: 'question',
+                inputValidator: (value) => {
+                  if (!value) {
+                    return 'Please enter a city name!'
+                  }
+                  if (!/^[a-zA-Z\s]*$/i.test(value.trim())) {
+                    return 'Only letters not use number or symbols'
+                  }
+                }
+              }).then((result) => {
+                if (result) {
+                  const city = result.value.trim(); // ✅ user input saved in variable
+                  if (city.length > 0) {
+                    console.log("User entered:", city);
+                    localStorage.setItem("city",city)
+                    // getWeather();
+                    weatherApp(city)
+                  }
+                }
+              }); 
+            }
+        }
+        else {
+          console.log("lassan");
+        }
       }
     );
   } else {

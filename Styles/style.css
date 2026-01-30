@@ -321,10 +321,6 @@ body::-webkit-scrollbar{
     color: #fff;
     font-size: 21px;
   }
-  main{
-    height: 400px;
-    background:linear-gradient(360deg, #403C28, rgb(178, 149, 81,0.4));
-  }
   .headline{
     position: absolute;
     width: 100%;
@@ -389,9 +385,14 @@ body::-webkit-scrollbar{
     gap: 15px;
   }
   .between-heading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 50px;
   }
   .between-text{
+    display: flex;
+    align-items: center;
     font-size: 50px;
   }
   /* .favorite-weather{
@@ -429,6 +430,7 @@ body::-webkit-scrollbar{
     z-index: 998;
     align-items: center;
     padding-left: 10px;
+    /* justify-content: center */
   }
   
   .favorite-container{
@@ -444,7 +446,41 @@ body::-webkit-scrollbar{
     overflow-y: hidden;
     gap: 10px;
     flex-wrap: nowrap;
+    scroll-behavior: smooth ;
+    /* width: 90%; */
+    anchor-name: --crousel;
   }
+  .favorite-container::scroll-button(right),
+  .favorite-container::scroll-button(left){
+    content: ">";
+    border: 2px solid white;
+    background: rgb(131, 125, 116,0.5);
+    /* backdrop-filter: blur(10px); */
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    padding: 0px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    position: fixed;
+    position-anchor: --crousel;
+    position-area: right center;
+    translate:-100%;
+  }
+  .favorite-container::scroll-button(left){
+    content: "<";
+    position-area: left center;
+    translate: 80%;
+  }
+  .favorite-container::scroll-button(left):disabled,
+  .favorite-container::scroll-button(right):disabled{
+    opacity: 0;
+    visibility: hidden;
+    /* display: none; */
+    cursor: auto;
+  } 
   .favorite-container .country-weather-container{
     width: 2000px;
     /* min-width: 0; */
@@ -461,7 +497,6 @@ body::-webkit-scrollbar{
     gap: 5px;
     padding: 5px 10px;
     text-transform: capitalize;
-
   }
   .favorite-container::-webkit-scrollbar{
     display: none;
@@ -469,7 +504,6 @@ body::-webkit-scrollbar{
   .favorite-text{
     font-size: 18px;
   }
-  
   .country-weather-container .pin{
     display: flex;
     justify-content: end;
@@ -494,4 +528,32 @@ body::-webkit-scrollbar{
   text-wrap: nowrap;
   word-break: break-word;
   overflow-wrap: break-word;
+}
+.main-container{
+  margin-left:60px;
+  height: auto;
+  background:linear-gradient(360deg, #403C28, rgb(178, 149, 81,0.4));
+  display: grid;
+  grid-template-columns: 0.99fr 230px;
+  
+}
+.content-container{
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-left: 10px;
+  /* justify-content: center; */
+  /* margin-left: 10px; */
+}
+.content-container .box{
+  margin-top: 50px;
+  height: 220px;
+  width: 220px;
+  border-radius: 20px;
+  border: 2px solid black; 
+  backdrop-filter: blur(10px); 
+  box-shadow: 0px 0px 7px 5px rgb(255, 255, 255,0.5);
+}
+.add-ads{
+  margin-top: 45px;
 }
